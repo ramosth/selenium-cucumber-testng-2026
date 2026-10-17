@@ -1,5 +1,5 @@
 # language: pt
-@cart @cart-persistencia
+@cart @cart-persistencia @regression
 Funcionalidade: Persistência do carrinho
   Como cliente da Swag Labs
   Quero que o carrinho continue com os meus produtos

@@ -1,5 +1,5 @@
 # language: pt
-@cart @cart-adicionar
+@cart @cart-adicionar @regression
 Funcionalidade: Adicionar produtos ao carrinho
   Como cliente da Swag Labs
   Quero adicionar produtos ao carrinho

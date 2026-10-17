@@ -1,5 +1,5 @@
 # language: pt
-@cart @cart-remover
+@cart @cart-remover @regression
 Funcionalidade: Remover produtos do carrinho
   Como cliente da Swag Labs
   Quero remover produtos do carrinho
