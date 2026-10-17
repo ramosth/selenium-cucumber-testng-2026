@@ -11,5 +11,28 @@
             "debug": false
         }
     ],
-    "java.search.scope": "all"
+    "java.search.scope": "all",
+    "cucumberautocomplete.steps": [
+        "src/test/java/**/*.java"
+    ],
+    "cucumberautocomplete.syncfeatures": "src/test/resources/features/**/*.feature",
+    "cucumberautocomplete.strictGherkinCompletion": true,
+    "cucumberautocomplete.gherkinDefinitionPart": "@(Dado|Quando|Entao|E|Mas)\\(",
+    "cucumberautocomplete.formatConfOverride": {
+        "Funcionalidade:": 0,
+        "Contexto:": 1,
+        "Cenário:": 1,
+        "Esquema do Cenário:": 1,
+        "Exemplos:": 2,
+        "Dado": 2,
+        "Quando": 2,
+        "Então": 2,
+        "E ": 2,
+        "Mas ": 2
+    },
+    "[feature]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false
+    }
 }
