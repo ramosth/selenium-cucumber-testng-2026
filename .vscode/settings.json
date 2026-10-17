@@ -22,6 +22,10 @@
         {
             "parameter": "{produto}",
             "value": "[A-Z_]+"
+        },
+        {
+            "parameter": "{valor}",
+            "value": "\\$\\d+\\.\\d{2}"
         }
     ],
     "cucumberautocomplete.formatConfOverride": {

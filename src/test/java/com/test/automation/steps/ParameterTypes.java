@@ -13,6 +13,9 @@ import io.cucumber.java.ParameterType;
  * recebe o Product pronto. Assim o nome completo de cada produto existe em um único
  * lugar (data/Product.java); se o site renomear um produto, só ele muda.
  *
+ * Valores: o .feature escreve o valor como aparece na tela ($7.99) e o Java recebe 7.99.
+ * (O {double} do Cucumber segue o idioma do .feature e, em pt, esperaria "7,99".)
+ *
  * Fica no pacote "steps" porque esse pacote já está no glue do TestRunner.
  */
 public class ParameterTypes {
@@ -27,5 +30,11 @@ public class ParameterTypes {
     @DataTableType
     public Product produtoDaTabela(String chave) {
         return Product.valueOf(chave.trim());
+    }
+
+    /** {valor} nas frases: valor em dólar, como na tela. Ex.: "$7.99" -> 7.99 */
+    @ParameterType("\\$\\d+\\.\\d{2}")
+    public Double valor(String texto) {
+        return Double.parseDouble(texto.substring(1)); // tira o "$"
     }
 }

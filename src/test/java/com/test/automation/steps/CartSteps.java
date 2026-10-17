@@ -19,8 +19,10 @@ import io.cucumber.java.pt.Quando;
 /**
  * Passos do carrinho: adicionar, remover, navegar e validar.
  *
- * Cada passo cria a página de que precisa a partir do driver, então os passos não
- * dependem uns dos outros. O cabeçalho (contador e ícone do carrinho) existe em todas
+ * Cada passo cria a página de que precisa a partir do driver, então os passos
+ * não
+ * dependem uns dos outros. O cabeçalho (contador e ícone do carrinho) existe em
+ * todas
  * as páginas, por isso o HeaderComponent é usado direto.
  *
  * Produtos chegam como Product (ver ParameterTypes): {produto} nas frases e
@@ -48,7 +50,8 @@ public class CartSteps {
 
     // ---------- Adicionar ----------
 
-    // Duas frases, uma ação: "Dado que adicionei..." (pré-condição) e "Quando adiciono..." (ação do teste)
+    // Duas frases, uma ação: "Dado que adicionei..." (pré-condição) e "Quando
+    // adiciono..." (ação do teste)
     @Dado("que adicionei ao carrinho os produtos:")
     @Quando("adiciono ao carrinho os produtos:")
     public void adicionoAoCarrinhoOsProdutos(List<Product> produtos) {
@@ -72,6 +75,11 @@ public class CartSteps {
     }
 
     // ---------- Navegação ----------
+
+    @Quando("abro o carrinho")
+    public void abroOCarrinho() {
+        Assert.assertTrue(carrinho().isLoaded(), "A página do carrinho não foi exibida.");
+    }
 
     @Quando("volto para a lista de produtos pelo botão Continue Shopping")
     public void voltoParaAListaPeloBotaoContinueShopping() {
