@@ -18,6 +18,12 @@
     "cucumberautocomplete.syncfeatures": "src/test/resources/features/**/*.feature",
     "cucumberautocomplete.strictGherkinCompletion": true,
     "cucumberautocomplete.gherkinDefinitionPart": "@(Dado|Quando|Entao|E|Mas)\\(",
+    "cucumberautocomplete.customParameters": [
+        {
+            "parameter": "{produto}",
+            "value": "[A-Z_]+"
+        }
+    ],
     "cucumberautocomplete.formatConfOverride": {
         "Funcionalidade:": 0,
         "Contexto:": 1,
