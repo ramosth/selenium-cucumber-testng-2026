@@ -3,6 +3,7 @@ package com.test.automation.steps;
 import org.testng.Assert;
 
 import com.test.automation.context.TestContext;
+import com.test.automation.data.User;
 import com.test.automation.pages.InventoryPage;
 import com.test.automation.pages.LoginPage;
 import com.test.automation.pages.components.HeaderComponent;
@@ -17,10 +18,13 @@ import io.cucumber.java.pt.Quando;
  * Passos de login e logout.
  *
  * O texto de cada anotação precisa ser IGUAL à frase do .feature (sem a palavra
- * Dado/Quando/Então/E). {string} captura o texto entre aspas e entrega como parâmetro.
+ * Dado/Quando/Então/E). {string} captura o texto entre aspas e entrega como
+ * parâmetro.
  *
- * A palavra-chave não importa para o Cucumber: uma frase escrita com "E" no .feature
- * encontra um método anotado com @Entao, e vice-versa. Usamos a mesma do .feature
+ * A palavra-chave não importa para o Cucumber: uma frase escrita com "E" no
+ * .feature
+ * encontra um método anotado com @Entao, e vice-versa. Usamos a mesma do
+ * .feature
  * só para facilitar a leitura.
  *
  * Os passos são globais: qualquer feature pode usá-los (ex.: o carrinho usa
@@ -43,10 +47,22 @@ public class LoginSteps {
         Assert.assertTrue(loginPage.isLoaded(), "A tela de login não foi exibida.");
     }
 
-    /** Atalho usado como pré-condição pelas outras features (carrinho, checkout...). */
+    /**
+     * Atalho usado como pré-condição pelas outras features (carrinho, checkout...).
+     */
     @Dado("que estou logado com o usuário padrão")
     public void queEstouLogadoComOUsuarioPadrao() {
         InventoryPage inventoryPage = new LoginPage(context.getDriver()).loginAsStandardUser();
+        Assert.assertTrue(inventoryPage.isLoaded(), "A página de produtos não foi exibida após o login.");
+    }
+
+    /**
+     * Login com qualquer usuário do Sauce Demo. Ex.: "que estou logado com o
+     * usuário PROBLEM"
+     */
+    @Dado("que estou logado com o usuário {usuario}")
+    public void queEstouLogadoComOUsuario(User usuario) {
+        InventoryPage inventoryPage = new LoginPage(context.getDriver()).loginAs(usuario);
         Assert.assertTrue(inventoryPage.isLoaded(), "A página de produtos não foi exibida após o login.");
     }
 
@@ -55,7 +71,8 @@ public class LoginSteps {
     @Quando("faço login com o usuário {string} e a senha {string}")
     public void facoLoginComOUsuarioEASenha(String usuario, String senha) {
         Log.info("Login com o usuário: '" + usuario + "'");
-        // Cria a página aqui para o passo funcionar em qualquer feature (ex.: depois de um logout)
+        // Cria a página aqui para o passo funcionar em qualquer feature (ex.: depois de
+        // um logout)
         loginPage = new LoginPage(context.getDriver());
         loginPage.login(usuario, senha);
     }

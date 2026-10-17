@@ -21,7 +21,11 @@
     "cucumberautocomplete.customParameters": [
         {
             "parameter": "{produto}",
-            "value": "[A-Z_]+"
+            "value": "(?:[A-Z_]+|<\\w+>)"
+        },
+        {
+            "parameter": "{usuario}",
+            "value": "(?:[A-Z_]+|<\\w+>)"
         },
         {
             "parameter": "{valor}",
