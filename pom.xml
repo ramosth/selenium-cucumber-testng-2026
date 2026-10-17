@@ -3,18 +3,18 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.test.automation</groupId>
-  <artifactId>selenium-framework</artifactId>
+  <artifactId>selenium-cucumber-testng</artifactId>
   <packaging>jar</packaging>
   <version>1.0</version>
-  <name>selenium-framework</name>
+  <name>selenium-cucumber-testng</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- Suíte executada pelo "mvn test" (arquivos em src/test/resources/suites).
-         Para trocar: mvn test -Dsuite=login | checkout | login-parameters -->
-    <suite>regression</suite>
+    <!-- As três dependências do Cucumber precisam estar SEMPRE na mesma versão.
+         Para atualizar, troque só aqui. -->
+    <cucumber.version>7.34.8</cucumber.version>
   </properties>
 
   <dependencies>
@@ -25,12 +25,42 @@
       <version>4.49.0</version>
     </dependency>
 
-    <!-- Source: https://mvnrepository.com/artifact/org.testng/testng -->
+    <!-- ===================== Cucumber + TestNG ===================== -->
+
+    <!-- Motor que executa os cenários (o "runner"). Só a parte de teste usa. -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>7.12.0</version>
+      <scope>test</scope>
     </dependency>
+
+    <!-- Cucumber: lê os .feature e liga cada frase ao método Java (@Dado, @Quando, @Entao) -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Ponte entre o Cucumber e o TestNG (AbstractTestNGCucumberTests) -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Injeção de dependência: entrega o mesmo TestContext (com o driver)
+         para os Hooks e para todas as classes de Steps -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-picocontainer</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ===================== Base reaproveitada ===================== -->
 
     <!-- Source: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
     <dependency>
@@ -67,13 +97,6 @@
       <version>5.5.1</version>
     </dependency>
 
-    <!-- Source: https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
-    <dependency>
-      <groupId>com.sun.mail</groupId>
-      <artifactId>jakarta.mail</artifactId>
-      <version>2.0.2</version>
-    </dependency>
-
     <!-- Leitura de arquivos JSON -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -91,15 +114,15 @@
 
   <build>
     <plugins>
+      <!-- Sem suítes XML: o Surefire encontra sozinho a classe TestRunner
+           (pelo padrão de nome "Test*"), e ela chama o Cucumber.
+           Para escolher os cenários: mvn test -Dcucumber.filter.tags="@login" -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.4</version>
         <configuration>
           <forkCount>0</forkCount>
-          <suiteXmlFiles>
-            <suiteXmlFile>src/test/resources/suites/${suite}.xml</suiteXmlFile>
-          </suiteXmlFiles>
         </configuration>
       </plugin>
     </plugins>
