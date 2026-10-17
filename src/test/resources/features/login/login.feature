@@ -1,5 +1,5 @@
 # language: pt
-@login
+@login @regression
 Funcionalidade: Login
   Como cliente da Swag Labs
   Quero entrar no sistema com o meu usuário e senha
