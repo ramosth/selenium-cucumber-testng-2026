@@ -90,20 +90,6 @@
       <version>2.22.0</version>
     </dependency>
 
-    <!-- Source: https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi-ooxml</artifactId>
-      <version>5.5.1</version>
-    </dependency>
-
-    <!-- Leitura de arquivos JSON -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.18.2</version>
-    </dependency>
-
     <!-- Leitura de arquivos PDF (recibo do pedido) -->
     <dependency>
       <groupId>org.apache.pdfbox</groupId>

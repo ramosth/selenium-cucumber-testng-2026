@@ -117,8 +117,6 @@ selenium-cucumber-testng-2026/
 
 Pastas geradas a cada execução e ignoradas pelo Git: `reports/`, `screenshots/`, `downloads/`, `logs/` e `target/`.
 
-> As classes `OrderScenario`, `ProductScenario`, `ExcelUtils` e `JsonUtils` vieram na cópia da base e não são usadas aqui: no Cucumber, a massa de dados fica no próprio `.feature` (tabelas e `Exemplos`).
-
 ---
 
 ## Como as peças conversam
