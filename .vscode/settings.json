@@ -29,7 +29,11 @@
         },
         {
             "parameter": "{valor}",
-            "value": "\\$\\d+\\.\\d{2}"
+            "value": "(?:\\$\\d+\\.\\d{2}|<\\w+>)"
+        },
+        {
+            "parameter": "{int}",
+            "value": "(?:-?\\d+|<\\w+>)"
         }
     ],
     "cucumberautocomplete.formatConfOverride": {
